@@ -1,6 +1,5 @@
 // This file defines the login handler for the application, which allows users to set their username in the configuration file.
 
-import { get } from "node:http";
 import { setUser } from "./config";
 import { getUserByName } from "./lib/db/queries/users";
 

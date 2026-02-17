@@ -2,6 +2,7 @@
 // It processes command-line arguments, sets up the command registry, and executes the appropriate command based on user input.
 
 import { CommandsRegistry, registerCommand, runCommand } from "./commands";
+import { handlerGetUsers } from "./getUsersHandler";
 import { handlerLogin } from "./loginHandler";
 import { handlerRigster } from "./registerHandler";
 import { handlerReset } from "./resetHandler";
@@ -23,6 +24,7 @@ async function main() {
   registerCommand(commandRegistry, "login", handlerLogin);
   registerCommand(commandRegistry, "register", handlerRigster);
   registerCommand(commandRegistry, "reset", handlerReset);
+  registerCommand(commandRegistry, "users", handlerGetUsers);
   const command = process.argv.slice(2);
   try {
     await runCommand(commandRegistry, command[0], command[1]);
