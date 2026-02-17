@@ -1,7 +1,14 @@
-export type CommandHandler = (cmdName: string, ...args: string[]) => void;
+// This file defines the structure for command handling in the application.
+// It includes types for command handlers and a registry to store them, as well as functions to register and execute commands.
+
+export type CommandHandler = (
+  cmdName: string,
+  ...args: string[]
+) => Promise<void>;
 
 export type CommandsRegistry = Record<string, CommandHandler>;
 
+// Function to register a command handler in the registry
 export function registerCommand(
   registry: CommandsRegistry,
   commandName: string,
@@ -10,7 +17,8 @@ export function registerCommand(
   registry[commandName] = handler;
 }
 
-export function runCommand(
+// Function to execute a command based on the command name and arguments
+export async function runCommand(
   registry: CommandsRegistry,
   cmdName: string,
   ...args: string[]
@@ -19,5 +27,5 @@ export function runCommand(
   if (!handler) {
     throw new Error(`Command ${cmdName} not found.`);
   }
-  handler(cmdName, ...args);
+  await handler(cmdName, ...args);
 }

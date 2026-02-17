@@ -1,3 +1,6 @@
+// This file defines the configuration management for the application,
+// including reading and writing the config file, as well as setting the current user.
+
 import fs from "fs";
 import os from "os";
 import path from "path";
@@ -7,6 +10,7 @@ export type config = {
   currentUserName: string;
 };
 
+// Function to set the current user in the config file
 export function setUser(userName: string) {
   const config = readConfig();
   config.currentUserName = userName;
@@ -27,6 +31,7 @@ export function readConfig(): config {
   }
 }
 
+// Function to get the path to the config file in the user's home directory
 export function getConfigFilePath(): string {
   return path.join(os.homedir(), ".gatorconfig.json");
 }
@@ -40,6 +45,7 @@ export function validateConfig(rawConfig: any): config {
   return rawConfig as config;
 }
 
+// Function to write the config object to the config file
 export function writeConfig(config: config) {
   const validatedConfig = validateConfig(config);
   const configFilePath = getConfigFilePath();
