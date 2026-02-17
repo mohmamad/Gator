@@ -28,7 +28,7 @@ export function readConfig(): config {
 }
 
 export function getConfigFilePath(): string {
-  return path.join(os.homedir(), "Gator", ".gatorconfig.json");
+  return path.join(os.homedir(), ".gatorconfig.json");
 }
 
 export function validateConfig(rawConfig: any): config {
