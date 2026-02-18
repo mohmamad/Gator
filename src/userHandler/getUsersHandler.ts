@@ -1,6 +1,6 @@
 // This file defines the get-users handler for the application, which retrieves and displays all users from the database.
-import { readConfig } from "./config";
-import { getUsers } from "./lib/db/queries/users";
+import { readConfig } from "../config";
+import { getUsers } from "../lib/db/queries/users";
 
 // Function to handle the get-users command, which retrieves and displays all users from the database.
 export async function handlerGetUsers(cmdName: string, ...args: string[]) {

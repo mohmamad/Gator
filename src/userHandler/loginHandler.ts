@@ -1,7 +1,7 @@
 // This file defines the login handler for the application, which allows users to set their username in the configuration file.
 
-import { setUser } from "./config";
-import { getUserByName } from "./lib/db/queries/users";
+import { setUser } from "../config";
+import { getUserByName } from "../lib/db/queries/users";
 
 // Function to handle the login command, which sets the current user in the config file
 export async function handlerLogin(cmdName: string, ...args: string[]) {

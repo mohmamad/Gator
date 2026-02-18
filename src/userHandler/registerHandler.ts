@@ -1,6 +1,6 @@
 // This file defines the register handler for the application, which allows users to create a new account and set their username in the configuration file.
-import { createUser, getUserByName } from "./lib/db/queries/users";
-import { setUser } from "./config";
+import { createUser, getUserByName } from "../lib/db/queries/users";
+import { setUser } from "../config";
 
 // Function to handle the register command, which creates a new user and sets the current user in the config file
 export async function handlerRigster(cmdName: string, ...args: string[]) {
