@@ -11,6 +11,7 @@ import { handlerAddFeed } from "./feedHandler/addFeedHandler";
 import { argv } from "process";
 import { printAllFeeds } from "./feedHandler/printFeedHandler";
 import { handlerFollow, handlerFollowing } from "./feedHandler/followHandler";
+import { middlewareLoggedIn } from "./logged_in_middleware";
 
 // Main function to process command-line arguments and execute commands
 async function main() {
@@ -20,10 +21,18 @@ async function main() {
   registerCommand(commandRegistry, "reset", handlerReset);
   registerCommand(commandRegistry, "users", handlerGetUsers);
   registerCommand(commandRegistry, "agg", handlerAggregator);
-  registerCommand(commandRegistry, "addfeed", handlerAddFeed);
+  registerCommand(
+    commandRegistry,
+    "addfeed",
+    middlewareLoggedIn(handlerAddFeed),
+  );
   registerCommand(commandRegistry, "feeds", printAllFeeds);
-  registerCommand(commandRegistry, "follow", handlerFollow);
-  registerCommand(commandRegistry, "following", handlerFollowing);
+  registerCommand(commandRegistry, "follow", middlewareLoggedIn(handlerFollow));
+  registerCommand(
+    commandRegistry,
+    "following",
+    middlewareLoggedIn(handlerFollowing),
+  );
 
   const commandargs = ["login", "register"];
   if (process.argv.length === 2) {

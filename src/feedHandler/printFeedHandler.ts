@@ -1,12 +1,10 @@
 // This file defines the handler for the "feeds" command,
 // which allows users to print all feeds in the system along with their associated user information.
 
-import { feeds, users } from "../lib/db/schema";
+import { Feed } from "../lib/db/queries/feeds";
 import { getFeeds } from "../lib/db/queries/feeds";
 import { getUserById } from "../lib/db/queries/users";
 import { UUID } from "node:crypto";
-
-export type Feed = typeof feeds.$inferSelect;
 
 // Function to print the details of a feed, including its name, URL, and associated user information.
 export function printFeed(feed: Feed): void {

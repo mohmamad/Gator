@@ -5,6 +5,7 @@ import { db } from "..";
 import { users } from "../schema";
 import { UUID } from "node:crypto";
 
+export type User = typeof users.$inferSelect;
 // Function to create a new user in the database with the given name.
 export async function createUser(name: string) {
   const [result] = await db.insert(users).values({ name: name }).returning();

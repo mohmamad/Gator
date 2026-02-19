@@ -4,6 +4,7 @@ import { db } from "..";
 import { feeds, users } from "../schema";
 import { readConfig } from "../../../config";
 
+export type Feed = typeof feeds.$inferSelect;
 // Function to add a new feed to the database, associated with the currently logged-in user.
 export async function addFeed(name: string, URL: string) {
   const userName = readConfig().currentUserName;
