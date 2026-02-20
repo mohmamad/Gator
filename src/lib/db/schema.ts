@@ -26,7 +26,7 @@ export const feeds = pgTable("feeds", {
   userId: uuid("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
-  lastFetchewdAt: timestamp("last_fetched_at").defaultNow(),
+  lastFetchedAt: timestamp("last_fetched_at").defaultNow(),
 });
 
 // Define the feed_follows database schema using Drizzle ORM, which represents the many-to-many relationship between users and feeds

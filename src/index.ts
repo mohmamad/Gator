@@ -40,7 +40,7 @@ async function main() {
     middlewareLoggedIn(handlerUnfollow),
   );
 
-  const commandargs = ["login", "register", "follow", "unfollow"];
+  const commandargs = ["login", "register", "follow", "unfollow", "agg"];
   if (process.argv.length === 2) {
     console.error("Not enough arguments were provided.");
     process.exit(1);
