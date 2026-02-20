@@ -28,7 +28,16 @@ export async function getFeeds() {
   return await db.select().from(feeds);
 }
 
+// Function to retrieve a feed from the database by its URL.
 export async function getFeedByUrl(url: string) {
   const [result] = await db.select().from(feeds).where(eq(feeds.url, url));
   return result;
+}
+
+// Function to delete a feed from the database based on its URL and the user ID of the owner.
+export async function deleteFeed(feedUrl: string, userId: string) {
+  await db
+    .delete(feeds)
+    .where(eq(feeds.url, feedUrl) && eq(feeds.userId, userId))
+    .execute();
 }

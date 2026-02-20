@@ -12,6 +12,7 @@ import { argv } from "process";
 import { printAllFeeds } from "./feedHandler/printFeedHandler";
 import { handlerFollow, handlerFollowing } from "./feedHandler/followHandler";
 import { middlewareLoggedIn } from "./logged_in_middleware";
+import { handlerUnfollow } from "./feedHandler/unfollowHandler";
 
 // Main function to process command-line arguments and execute commands
 async function main() {
@@ -33,13 +34,18 @@ async function main() {
     "following",
     middlewareLoggedIn(handlerFollowing),
   );
+  registerCommand(
+    commandRegistry,
+    "unfollow",
+    middlewareLoggedIn(handlerUnfollow),
+  );
 
-  const commandargs = ["login", "register"];
+  const commandargs = ["login", "register", "follow", "unfollow"];
   if (process.argv.length === 2) {
     console.error("Not enough arguments were provided.");
     process.exit(1);
   } else if (process.argv.length === 3 && commandargs.includes(argv[2])) {
-    console.error("A username is required");
+    console.error("Not enough arguments were provided.");
     process.exit(1);
   } else if (process.argv.length < 5 && argv[2] === "addfeed") {
     console.error("Invalid command or insufficient arguments.");
