@@ -13,6 +13,7 @@ import { printAllFeeds } from "./feedHandler/printFeedHandler";
 import { handlerFollow, handlerFollowing } from "./feedHandler/followHandler";
 import { middlewareLoggedIn } from "./logged_in_middleware";
 import { handlerUnfollow } from "./feedHandler/unfollowHandler";
+import { handlerBrowse } from "./browseHandler";
 
 // Main function to process command-line arguments and execute commands
 async function main() {
@@ -39,6 +40,7 @@ async function main() {
     "unfollow",
     middlewareLoggedIn(handlerUnfollow),
   );
+  registerCommand(commandRegistry, "browse", middlewareLoggedIn(handlerBrowse));
 
   const commandargs = ["login", "register", "follow", "unfollow", "agg"];
   if (process.argv.length === 2) {
